@@ -6,20 +6,26 @@ package com.ellisjoe.aoc;
 import com.google.common.io.Resources;
 
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.stream.Stream;
 
 public class Utils {
-    public static List<String> readLines(int day) {
+    public static List<String> readLines(int day, boolean test) {
         try {
-            return Resources.readLines(Resources.getResource(String.format("day-%02d.in", day)), StandardCharsets.UTF_8);
+            URL resource = Resources.getResource(String.format("day-%02d.%s", day, test ? "test" : "in"));
+            return Resources.readLines(resource, StandardCharsets.UTF_8);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public static Stream<String> streamLines(int day) {
-        return readLines(day).stream();
+        return readLines(day, false).stream();
+    }
+
+    public static Stream<String> streamLines(int day, boolean test) {
+        return readLines(day, test).stream();
     }
 }
