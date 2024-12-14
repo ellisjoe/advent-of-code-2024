@@ -18,8 +18,16 @@ public record Point(long x, long y) {
         };
     }
 
-    public Point move(Vector vector) {
+    public Point add(Vector vector) {
         return new Point(x + vector.x(), y + vector.y());
+    }
+
+    public Point inverse() {
+        return new Point(-x, -y);
+    }
+
+    public Point subtract(Point point) {
+        return new Point(x - point.x(), y - point.y());
     }
 
     public Point subtract(long value) {

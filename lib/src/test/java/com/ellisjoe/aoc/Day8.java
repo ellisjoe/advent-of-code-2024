@@ -1,5 +1,7 @@
 package com.ellisjoe.aoc;
 
+import com.ellisjoe.aoc.utils.Bounds;
+import com.ellisjoe.aoc.utils.Point;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
@@ -89,8 +91,8 @@ public class Day8 {
 
     private static void printMap(List<Antenna> antennas, Bounds bounds, List<Point> list) {
         Map<Point, Character> antennaMap = antennas.stream().collect(Collectors.toMap(a -> a.point, a -> a.frequency));
-        for (int y = 0; y < bounds.bottomRight.y; y++) {
-            for (int x = 0; x < bounds.bottomRight.x; x++) {
+        for (int y = 0; y < bounds.bottomRight().y(); y++) {
+            for (int x = 0; x < bounds.bottomRight().x(); x++) {
                 Point point = new Point(x, y);
                 if (antennaMap.containsKey(point)) {
                     System.out.print(antennaMap.get(point));
@@ -104,27 +106,6 @@ public class Day8 {
         }
     }
 
-    record Bounds(Point topLeft, Point bottomRight) {
-        boolean inBounds(Point point) {
-            return topLeft.x <= point.x
-                    && topLeft.y <= point.y
-                    && point.x < bottomRight.x
-                    && point.y < bottomRight.y;
-        }
-    }
-
     record Antenna(char frequency, Point point) {
-    }
-
-    record Point(int x, int y) {
-        Point subtract(Point point) {
-            int distX = x - point.x;
-            int distY = y - point.y;
-            return new Point(distX, distY);
-        }
-
-        Point inverse() {
-            return new Point(-x, -y);
-        }
     }
 }

@@ -61,7 +61,7 @@ public class Day13 {
         long b = num / den;
         long a = (py + TEN_T - by * b) / ay;
 
-        if (Point.origin().move(buttonA.multiply(a).add(buttonB.multiply(b))).equals(actualPrize)) {
+        if (Point.origin().add(buttonA.multiply(a).add(buttonB.multiply(b))).equals(actualPrize)) {
             return Optional.of(new Moves(a, b));
         } else {
             return Optional.empty();
@@ -75,7 +75,7 @@ public class Day13 {
         for (int b = 100; b >= 0; b--) {
             for (int a = 0; a <= 100; a++) {
                 Vector vec = buttonA.multiply(a).add(buttonB.multiply(b));
-                Point point = Point.origin().move(vec);
+                Point point = Point.origin().add(vec);
                 if (point.equals(prize)) {
                     return Optional.of(new Moves(a, b));
                 }
