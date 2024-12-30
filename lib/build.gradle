@@ -14,6 +14,7 @@ dependencies {
     api libs.commons.math3
 
     implementation libs.guava
+    implementation "one.util:streamex:0.8.3"
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

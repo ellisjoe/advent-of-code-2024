@@ -37,4 +37,8 @@ public record Point(long x, long y) {
     public Point add(long value) {
         return new Point(x + value, y + value);
     }
+
+    public long manhattanDistance(Point point) {
+        return Math.abs(x - point.x()) + Math.abs(y - point.y());
+    }
 }
