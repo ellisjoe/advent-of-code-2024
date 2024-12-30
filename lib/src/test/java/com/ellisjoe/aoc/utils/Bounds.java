@@ -8,9 +8,16 @@ public record Bounds(Point topLeft, Point bottomRight) {
                 && point.y() < bottomRight.y();
     }
 
+    public long area() {
+        long width = bottomRight.x() - topLeft.x();
+        long height = bottomRight.y() - topLeft.y();
+        return width * height;
+    }
+
     public Point wrap(Point point) {
         return new Point(wrap(point.x(), topLeft.x(), bottomRight.x()), wrap(point.y(), topLeft.y(), bottomRight.y()));
     }
+
     private static long wrap(long value, long lower, long upper) {
         long remainder = value % (upper - lower);
 
